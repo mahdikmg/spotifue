@@ -41,7 +41,7 @@
         color: #665bfe !important;
     }
 
-    .icon-search {
+    .icon.icon-search {
         height: 1rem;
         width: 1rem;
         -webkit-mask-image: url('../../assets/search.svg');

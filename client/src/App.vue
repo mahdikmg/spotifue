@@ -1,41 +1,49 @@
 <template>
-  <div id="app" class="bg-white container-fluid pb-4 d-flex flex-column vh-100">
-    <navbar></navbar>
-    <div class="row px-4 flex-grow-1 h-100">
-      <div class="col-12 h-100">
+    <div id="app" class="bg-white container-fluid d-flex flex-column h-100">
+        <navbar></navbar>
         <keep-alive>
-          <router-view></router-view>
+            <router-view></router-view>
         </keep-alive>
-      </div>
+        <player></player>
     </div>
-  </div>
 </template>
 
 <script>
-  import navbar from "./components/navbar/navbar";
-export default {
-  name: 'app',
-  components: {navbar},
-}
+    import navbar from "./components/navbar/navbar";
+    import player from "./components/player/player";
+
+    export default {
+        name: 'app',
+        components: {
+            navbar,
+            player
+        },
+    }
 </script>
 
 <style>
-  :root, body {
-    height: 100%;
-  }
+    :root, body {
+        height: 100%;
+    }
 
-  html, body {
-    min-width: 930px;
-    width: auto !important;
-  }
+    html, body {
+        min-width: 930px;
+        max-width: 1360px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
-  .icon {
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-    display: inline-block;
-  }
+    .icon {
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        display: inline-block;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: #000632;
-  }
+    h1, h2, h3, h4, h5, h6 {
+        color: #000632;
+    }
+
+    .radius {
+        border-radius: 15px;
+    }
 </style>
