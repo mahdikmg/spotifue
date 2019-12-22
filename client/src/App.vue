@@ -46,4 +46,8 @@
     .radius {
         border-radius: 15px;
     }
+
+    .cursor-pointer:hover {
+        cursor: pointer;
+    }
 </style>

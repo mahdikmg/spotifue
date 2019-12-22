@@ -7,11 +7,13 @@
         </div>
         <div class="col">
             <div class="audio-player row align-items-center">
-                <span class="icon icon-favorite"></span>
+                <span class="icon icon-favorite cursor-pointer" @click="removeFavorite(playingRightNow.url)"
+                      v-if="playingRightNow.favorite"></span>
+                <span class="icon icon-unFavorite cursor-pointer" @click="setFavorite" v-else></span>
                 <div class="col mx-5">
                     <div class="row justify-content-center align-content-center mb-2">
-                        <span class="icon icon-pause" @click="paused" v-if="playingRightNow.status"></span>
-                        <span class="icon icon-play" @click="played" v-else></span>
+                        <span class="icon icon-pause cursor-pointer" @click="paused" v-if="playingRightNow.status"></span>
+                        <span class="icon icon-play cursor-pointer" @click="played" v-else></span>
                         <audio class="d-none" id="player" :src="playingRightNow.url" @timeupdate="timeUpdate"
                                @ended="paused" autoplay></audio>
                     </div>
@@ -25,28 +27,35 @@
                     </div>
                 </div>
                 <span class="icon icon-volume mr-2"></span>
-                <input type="range" class="volume" min="0" max="100" @change="volumeChanged" v-model="volumer">
+                <input type="range" class="volume" min="0" max="100" @click="volumeChanged" v-model="volumer">
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import {mapState, mapActions} from 'vuex'
+
     export default {
         name: "player",
         data() {
             return {
                 musicProgress: 0,
-                volumer: 100
+                volumer: 100,
             }
         },
         computed: {
             ...mapState([
-                'playingRightNow'
+                'playingRightNow',
+                'favorites'
             ])
         },
         methods: {
+            ...mapActions([
+                'setFavorites',
+                'addFavorites',
+                'removeFavorites'
+            ]),
             played() {
                 document.getElementById('player').play()
                 this.playingRightNow.status = true
@@ -63,6 +72,28 @@
             },
             volumeChanged() {
                 document.getElementById('player').volume = this.volumer / 100
+            },
+            setFavorite() {
+                this.playingRightNow.favorite = true
+                this.addFavorites(this.playingRightNow)
+                this.saveFavorites()
+            },
+            removeFavorite(item) {
+                this.playingRightNow.favorite = false
+                this.removeFavorites(item)
+                this.saveFavorites()
+            },
+            saveFavorites() {
+                const parsed = JSON.stringify(this.favorites)
+                localStorage.setItem('favorites', parsed)
+            },
+            checkFavorite() {
+                for (let i=0; i < this.favorites.length; i++) {
+                    if (this.favorites[i].url === this.playingRightNow.url) {
+                        return true
+                    }
+                }
+                return false
             }
         },
         filters: {
@@ -71,6 +102,25 @@
                     return '0:0' + Math.floor(sec)
                 } else {
                     return '0:' + Math.floor(sec)
+                }
+            }
+        },
+        created() {
+            this.$store.watch(
+                (state) => state.playingRightNow,
+                // eslint-disable-next-line no-unused-vars
+                (oldVal, newVal) => {
+                    this.playingRightNow.favorite = this.checkFavorite()
+                }
+            );
+        },
+        mounted() {
+            if(localStorage.getItem('favorites')) {
+                try {
+                    /*this.setFavorites(Object.assign({}, JSON.parse(localStorage.getItem('favorites'))))*/
+                    this.setFavorites(JSON.parse(localStorage.getItem('favorites')))
+                } catch (e) {
+                    localStorage.removeItem('favorites')
                 }
             }
         }
@@ -166,6 +216,14 @@
         cursor: pointer;
     }
 
+    .icon.icon-unFavorite {
+        height: 1.2rem;
+        width: 1.3rem;
+        -webkit-mask-image: url('../../assets/unFavorite.svg');
+        mask-image: url('../../assets/unFavorite.svg');
+        background-color: white;
+    }
+
     .icon.icon-favorite {
         height: 1.2rem;
         width: 1.3rem;
@@ -181,9 +239,6 @@
         mask-image: url('../../assets/play.svg');
         background-color: white;
     }
-    .icon.icon-play:hover {
-        cursor: pointer;
-    }
 
     .icon.icon-pause {
         height: 1rem;
@@ -192,7 +247,8 @@
         mask-image: url('../../assets/pause.svg');
         background-color: white;
     }
-    .icon.icon-pause:hover {
+
+    .cursor-pointer:hover {
         cursor: pointer;
     }
 
