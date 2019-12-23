@@ -10,7 +10,9 @@ export const store = new Vuex.Store({
     },
     mutations: {
         setPlayingRightNow: ( state, payload ) => {
-            state.playingRightNow = payload
+            if (state.playingRightNow.url !== payload.url) {
+                state.playingRightNow = payload
+            }
         },
         setFavorites: ( state, payload ) => {
             state.favorites = payload

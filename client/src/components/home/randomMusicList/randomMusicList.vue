@@ -1,13 +1,13 @@
 <template>
-    <div class="bg-light-pink radius pt-3 pl-4 pr-2">
-        <div class="d-flex justify-content-between align-items-center">
+    <div class="bg-light-pink radius pt-3 pl-4 pr-2 h-500px">
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="font-weight-bold d-inline-block mb-0">Recommended</h5>
             <span class="icon icon-refresh cursor-pointer mr-4" @click="makeNewList"></span>
         </div>
-        <ol class="m-0 p-0 overflow-auto">
+        <ol class="m-0 p-0 overflow-auto h-410px">
             <div class="container-fluid">
                 <template v-for="item in recommended">
-                    <li class="row my-4" :key="item.index" v-if="item.preview_url !== null">
+                    <li class="row mb-4" :key="item.index" v-if="item.preview_url !== null">
                         <div class="col d-flex align-items-center pointer" @click="setPlayingRightNow({ url: item.preview_url,
                         image: item.album.images[2].url, artist: item.name, track: item.album.artists[0].name, status: true,
                          favorite: false })">
@@ -55,6 +55,14 @@
         background-color: #ffcece;
     }
 
+    .h-500px {
+        height: 500px;
+    }
+
+    .h-410px {
+        height: 410px;
+    }
+
     ol {
         counter-reset: item;
         list-style-type: none;
@@ -67,13 +75,10 @@
         align-self: center;
     }
 
-    .line-height-1 {
-        line-height: 1;
-    }
-
     .overflow-auto::-webkit-scrollbar {
         background-color: white;
         width: 4px;
+        border-radius: 2rem;
     }
 
     .overflow-auto::-webkit-scrollbar-thumb {

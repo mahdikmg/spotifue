@@ -34,14 +34,14 @@
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex'
+    import { mapState, mapActions } from 'vuex'
 
     export default {
         name: "player",
         data() {
             return {
                 musicProgress: 0,
-                volumer: 100,
+                volumer: 50,
             }
         },
         computed: {
@@ -115,6 +115,7 @@
             );
         },
         mounted() {
+            document.getElementById('player').volume = 0.5
             if(localStorage.getItem('favorites')) {
                 try {
                     /*this.setFavorites(Object.assign({}, JSON.parse(localStorage.getItem('favorites'))))*/

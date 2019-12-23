@@ -4,14 +4,19 @@
             <random-music-list></random-music-list>
         </div>
         <div class="col-9">
-            <new-releases></new-releases>
+            <div class="container-fluid">
+                <new-releases></new-releases>
+                <featured-playlists></featured-playlists>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import randomMusicList from "./randomMusicList/randomMusicList"
-    import newReleases from "./newReleases/newReleases";
+    import newReleases from "./newReleases/newReleases"
+    import featuredPlaylists from "./featuredPlaylists/featuredPlaylists"
+
     export default {
         name: "home",
         data() {
@@ -21,7 +26,8 @@
         },
         components: {
             randomMusicList,
-            newReleases
+            newReleases,
+            featuredPlaylists
         }
     }
 </script>
