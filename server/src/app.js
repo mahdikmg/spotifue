@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const request = require('request')
+const path = require('path')
 
 const app = express()
 app.use(bodyParser.json())
@@ -36,8 +37,8 @@ app.get('/api', cors(corsOptions), (req, res) => {
 })
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname +'/public/'))
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+  app.use(express.static(path.join(__dirname, '/public/')))
+  app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')))
 }
 
 app.listen(process.env.PORT || 8081)
