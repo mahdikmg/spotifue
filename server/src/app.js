@@ -15,7 +15,7 @@ const corsOptions = {
 const Oauth = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
-    Authorization: 'Basic Y2E4YTMwN2NmMWY3NDIxNzg3MmE2MTJmNTkxY2M5NmE6ZjI2NTgzMDEyN2QyNGNiYmE0ZjRkMWI5YzRiN2Q4ZDQ='
+    Authorization: 'Basic '
     // encode your client_id and client_secret to base64 in this pattern client_id:client_secret
     // and add it after Basic like 'Basic ZjM4ZjAw...WY0MzE='
   },
