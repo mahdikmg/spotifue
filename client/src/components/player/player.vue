@@ -75,7 +75,14 @@
             },
             setFavorite() {
                 this.playingRightNow.favorite = true
-                this.addFavorites(this.playingRightNow)
+                this.addFavorites({
+                    url: this.playingRightNow.url,
+                    image: this.playingRightNow.image,
+                    artist: this.playingRightNow.artist,
+                    track: this.playingRightNow.track,
+                    status: false,
+                    favorite: true    
+                })
                 this.saveFavorites()
             },
             removeFavorite(item) {
@@ -108,8 +115,7 @@
         created() {
             this.$store.watch(
                 (state) => state.playingRightNow,
-                // eslint-disable-next-line no-unused-vars
-                (oldVal, newVal) => {
+                () => {
                     this.playingRightNow.favorite = this.checkFavorite()
                 }
             );
@@ -118,7 +124,6 @@
             document.getElementById('player').volume = 0.5
             if(localStorage.getItem('favorites')) {
                 try {
-                    /*this.setFavorites(Object.assign({}, JSON.parse(localStorage.getItem('favorites'))))*/
                     this.setFavorites(JSON.parse(localStorage.getItem('favorites')))
                 } catch (e) {
                     localStorage.removeItem('favorites')
@@ -247,10 +252,6 @@
         -webkit-mask-image: url('../../assets/pause.svg');
         mask-image: url('../../assets/pause.svg');
         background-color: white;
-    }
-
-    .cursor-pointer:hover {
-        cursor: pointer;
     }
 
     .icon.icon-volume {

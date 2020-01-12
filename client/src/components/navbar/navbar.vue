@@ -5,16 +5,19 @@
                 <a class="nav-link font-weight-bold pl-0">Home</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/library'">
-                <a class="nav-link font-weight-bold">Library</a>
+                <a class="nav-link font-weight-bold disabled">Library</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/discover'">
-                <a class="nav-link font-weight-bold">Discover</a>
+                <a class="nav-link font-weight-bold disabled">Discover</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/artist'">
-                <a class="nav-link font-weight-bold">Artists</a>
+                <a class="nav-link font-weight-bold disabled">Artists</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/favorites'">
                 <a class="nav-link font-weight-bold">Favorites</a>
+            </router-link>
+            <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/about'">
+                <a class="nav-link font-weight-bold">About</a>
             </router-link>
         </ul>
         <form class="form-inline my-4">
