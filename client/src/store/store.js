@@ -18,6 +18,7 @@ export const store = new Vuex.Store({
             state.favorites = payload
         },
         addFavorites: ( state, payload ) => {
+            payload.status = true
             state.favorites.push(payload)
         },
         removeFavorites: ( state, payload ) => {

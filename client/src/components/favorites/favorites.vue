@@ -1,7 +1,7 @@
 <template>
     <div class="row px-4 justify-content-center">
-        <div class="col-7 d-flex align-items-center rounded bg-mint py-3 px-3 cursor-pointer"
-        v-for="track in this.$store.state.favorites" :key="track.index"
+        <div class="col-7 d-flex align-items-center rounded bg-mint py-3 px-3 cursor-pointer mb-3"
+        v-for="(track, index) in this.$store.state.favorites" :key="index"
         @click="setPlayingRightNow(track)">
             <img class="rounded border-0 mr-3" :src="track.image" width="64" height="64">
             <div class="text-white">

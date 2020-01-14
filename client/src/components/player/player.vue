@@ -75,14 +75,7 @@
             },
             setFavorite() {
                 this.playingRightNow.favorite = true
-                this.addFavorites({
-                    url: this.playingRightNow.url,
-                    image: this.playingRightNow.image,
-                    artist: this.playingRightNow.artist,
-                    track: this.playingRightNow.track,
-                    status: false,
-                    favorite: true    
-                })
+                this.addFavorites(this.playingRightNow)
                 this.saveFavorites()
             },
             removeFavorite(item) {

@@ -10,7 +10,7 @@ let accessToken = ''
 import axios from 'axios'
 (() => {
   let requestApi = new XMLHttpRequest()
-  requestApi.open("GET", 'http://localhost:8081/api', false)
+  requestApi.open("GET", '/api', false)
   requestApi.send()
   accessToken = requestApi.responseText
 })()
