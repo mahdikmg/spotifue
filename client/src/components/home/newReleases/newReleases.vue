@@ -46,12 +46,10 @@
                         let max = this.albumsTracks.length
                         let randomNum = Math.floor(Math.random() * max)
                         let track = this.albumsTracks[randomNum]
-                        if (track.preview_url !== null) {
-                            this.setPlayingRightNow({
+                        this.setPlayingRightNow({
                                 url: track.preview_url,
                                 image: imgUrl, artist: track.name, track: track.artists[0].name, status: true,
                                 favorite: false })
-                        }
                     })
                     .catch(error => {
                         this.albumsTracks = error

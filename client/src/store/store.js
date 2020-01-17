@@ -7,10 +7,12 @@ export const store = new Vuex.Store({
     state: {
         playingRightNow: {},
         favorites: [],
+        discoverList: [],
+        discoveredMusics: []
     },
     mutations: {
         setPlayingRightNow: ( state, payload ) => {
-            if (state.playingRightNow.url !== payload.url) {
+            if (state.playingRightNow.url !== payload.url && payload.url !== null) {
                 state.playingRightNow = payload
             }
         },
@@ -27,6 +29,21 @@ export const store = new Vuex.Store({
                     state.favorites.splice(index, 1)
                 }
             })
+        },
+        addToDiscoverList: ( state, payload ) => {
+            if (state.discoverList.length < 5) {
+                state.discoverList.push(payload)
+            }
+        },
+        removeFromDiscoverList: ( state, payload ) => {
+            state.discoverList.forEach( (item, index) => {
+                if (item.id === payload) {
+                    state.discoverList.splice(index, 1)
+                }
+            } )
+        },
+        setDiscoveredMusics: ( state, payload ) => {
+            state.discoveredMusics = payload
         }
     },
     actions: {
@@ -41,6 +58,15 @@ export const store = new Vuex.Store({
         },
         removeFavorites: ( { commit }, payload ) => {
             commit('removeFavorites', payload)
+        },
+        addToDiscoverList: ( { commit }, payload ) => {
+            commit('addToDiscoverList', payload)
+        },
+        removeFromDiscoverList: ( { commit }, payload ) => {
+            commit('removeFromDiscoverList', payload)
+        },
+        setDiscoveredMusics: ( { commit }, payload ) => {
+            commit('setDiscoveredMusics', payload)
         }
     }
 });

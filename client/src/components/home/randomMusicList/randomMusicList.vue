@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <template v-for="item in recommended">
                     <li class="row mb-4" :key="item.index" v-if="item.preview_url !== null">
-                        <div class="col d-flex align-items-center pointer" @click="setPlayingRightNow({ url: item.preview_url,
+                        <div class="col d-flex align-items-center cursor-pointer" @click="setPlayingRightNow({ url: item.preview_url,
                         image: item.album.images[2].url, artist: item.name, track: item.album.artists[0].name, status: true,
                          favorite: false })">
                             <img :src="item.album.images[2].url" width="32" height="32" class="rounded mr-3">
@@ -84,9 +84,5 @@
     .overflow-auto::-webkit-scrollbar-thumb {
         background-color: #1b1e21;
         border-radius: 2rem;
-    }
-
-    .pointer {
-        cursor: pointer;
     }
 </style>
