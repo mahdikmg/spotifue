@@ -8,7 +8,7 @@
                 <a class="nav-link font-weight-bold">Discover</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/artist'">
-                <a class="nav-link font-weight-bold disabled">Artists</a>
+                <a class="nav-link font-weight-bold">Artists</a>
             </router-link>
             <router-link class="nav-item" active-class="active" tag="li" v-bind:to="'/favorites'">
                 <a class="nav-link font-weight-bold">Favorites</a>
