@@ -6,7 +6,7 @@
                     <h2 class="text-light">{{ artist.data.name }}</h2>
                     <div class="row my-3">
                         <div class="col-5 d-flex align-items-center justify-content-center">
-                            <span class="h3 m-0">{{artist.data.followers.total}}</span>
+                            <span class="h3 m-0">{{artist.data.followers.total | seperator}}</span>
                         </div>
                         <div class="col-7 d-flex align-items-center justify-content-center">
                             <ul class="m-0 p-0">
@@ -114,6 +114,31 @@ export default {
             vm.getArtist(to.params.id)
             vm.showMoreStatus = false
         })
+    },
+    filters: {
+        seperator(num) {
+            let letter = ''
+            let number = num.toString().split('')
+            switch (true) {
+                case number.length >= 5 && number.length <= 6 :
+                    number.splice(-2,2)
+                    letter = 'K'
+                    break
+                case number.length >= 7 :
+                    number.splice(-5,5)
+                    letter = 'M'
+                    break
+                default:
+                    letter = ''
+            }
+            if (number[number.length - 1] != 0 ) {
+                let lastNum = '.' + number[number.length - 1]
+                number[number.length - 1] = lastNum
+            } else {
+                number.pop()
+            }
+            return (number.join('') + letter)
+        }
     },
     components: {
         Flickity: () => import('vue-flickity')

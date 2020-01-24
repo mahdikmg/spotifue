@@ -9,6 +9,12 @@
                 <featured-playlists></featured-playlists>
             </div>
         </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Hi :D, some tracks have preview, you can listen by clicking on them.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
 </template>
 
@@ -16,18 +22,18 @@
     import randomMusicList from "./randomMusicList/randomMusicList"
     import newReleases from "./newReleases/newReleases"
     import featuredPlaylists from "./featuredPlaylists/featuredPlaylists"
+    import jquery from 'jquery'
 
     export default {
         name: "home",
-        data() {
-            return {
-
-            }
-        },
         components: {
             randomMusicList,
             newReleases,
             featuredPlaylists
+        },
+        mounted() {
+            let $ = jquery
+            $('.alert').alert()
         }
     }
 </script>
@@ -39,5 +45,12 @@
         -webkit-mask-image: url('../../assets/refresh.svg');
         mask-image: url('../../assets/refresh.svg');
         background-color: black;
+    }
+
+    .alert {
+        position: fixed !important;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 50%;
     }
 </style>

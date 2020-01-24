@@ -1,5 +1,8 @@
 <template>
     <div class="row px-4 justify-content-center">
+        <div class="col-7 text-center" v-show="!($store.state.favorites.length > 0)">
+            add some music to your favorite list.
+        </div>
         <div class="col-7 d-flex align-items-center rounded bg-mint py-3 px-3 cursor-pointer mb-3"
         v-for="(track, index) in $store.state.favorites" :key="index"
         @click="setPlayingRightNow(track)">

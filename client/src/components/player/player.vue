@@ -1,5 +1,5 @@
 <template>
-    <div class="row bg-purple px-5 py-2 player-radius position-sticky player d-flex align-items-center">
+    <div class="row bg-purple px-5 py-2 player-radius position-sticky player align-items-center" v-show="playingRightNow.url">
         <img class="rounded border-0" :src="playingRightNow.image" width="64" height="64">
         <div class="col-2 text-white">
             <small class="font-weight-bold align-top d-block">{{ playingRightNow.track }}</small>
@@ -35,7 +35,6 @@
 
 <script>
     import { mapState, mapActions } from 'vuex'
-
     export default {
         name: "player",
         data() {
@@ -130,6 +129,7 @@
     .player {
         bottom: 0;
         margin-top: auto;
+        display: flex;
     }
 
     .bg-purple {
